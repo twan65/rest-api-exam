@@ -1,5 +1,6 @@
 package com.rest.api.controller.v1;
 
+import com.rest.api.advice.exception.CUserNotFoundException;
 import com.rest.api.service.ResponseService;
 import com.rest.api.entity.User;
 import com.rest.api.model.response.CommonResult;
@@ -30,9 +31,9 @@ public class UserController {
     @ApiOperation(value = "メンバー照会", notes = "メンバー番号で照会する。")
     @GetMapping(value = "/user/{msrl}")
     public SingleResult<User> findUserById(
-            @ApiParam(value = "userId", required = true) @PathVariable long msrl) throws Exception {
+            @ApiParam(value = "userId", required = true) @PathVariable long msrl){
         // 結果データが１件の場合、getBasicResultを利用し、結果を出力する。
-        return responseService.getSingleResult(userJpaRepo.findById(msrl).orElseThrow(Exception::new));
+        return responseService.getSingleResult(userJpaRepo.findById(msrl).orElseThrow(CUserNotFoundException::new));
     }
 
     @ApiOperation(value = "メンバー入力", notes = "メンバーを入力する。")
