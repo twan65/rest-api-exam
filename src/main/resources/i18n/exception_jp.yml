@@ -1,0 +1,7 @@
+# exception_jp.yml
+unKnown:
+  code: "-9999"
+  msg: "予想されないエラーが発生しました。"
+userNotFound:
+  code: "-1000"
+  msg: "存在しないメンバーです。"
