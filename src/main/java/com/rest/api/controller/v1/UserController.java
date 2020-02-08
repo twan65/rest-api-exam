@@ -31,7 +31,8 @@ public class UserController {
     @ApiOperation(value = "メンバー照会", notes = "メンバー番号で照会する。")
     @GetMapping(value = "/user/{msrl}")
     public SingleResult<User> findUserById(
-            @ApiParam(value = "userId", required = true) @PathVariable long msrl){
+            @ApiParam(value = "userId", required = true) @PathVariable long msrl,
+            @ApiParam(value = "言語", defaultValue = "ja") @RequestParam String lang) {
         // 結果データが１件の場合、getBasicResultを利用し、結果を出力する。
         return responseService.getSingleResult(userJpaRepo.findById(msrl).orElseThrow(CUserNotFoundException::new));
     }

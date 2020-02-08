@@ -19,11 +19,14 @@ import java.util.ResourceBundle;
 @Configuration
 public class MessageConfiguration implements WebMvcConfigurer {
 
-    // Sessionに地域を設定。defaultはKOREAN = 'ko'
+    // この値で言語情報を取得する。
+    private static final String DEFAULT_QQUERY_PARAM = "lang";
+
+    // Sessionに地域を設定。defaultはJAPANESE = 'ja'
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.KOREAN);
+        slr.setDefaultLocale(Locale.JAPANESE);
         return slr;
     }
 
@@ -31,7 +34,7 @@ public class MessageConfiguration implements WebMvcConfigurer {
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName("lang");
+        lci.setParamName(DEFAULT_QQUERY_PARAM);
         return lci;
     }
 

@@ -1,4 +1,4 @@
-# exception_jp.yml
+# exception_ja.yml
 unKnown:
   code: "-9999"
   msg: "予想されないエラーが発生しました。"
