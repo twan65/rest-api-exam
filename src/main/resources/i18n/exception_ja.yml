@@ -5,3 +5,6 @@ unKnown:
 userNotFound:
   code: "-1000"
   msg: "存在しないメンバーです。"
+emailSigninFailed:
+  code: "-1001"
+  msg: "アカウントが存在しないもしくはメールアドレスまたはパスワードが間違っています。"
