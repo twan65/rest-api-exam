@@ -41,7 +41,7 @@ public class SignController {
             throw new CEmailSigninFailedException();
         }
 
-        return responseService.getSingleResult(jwtTokenProvider.createToken(user.getName(), user.getRoles()));
+        return responseService.getSingleResult(jwtTokenProvider.createToken(String.valueOf(user.getMsrl()), user.getRoles()));
     }
 
     @ApiOperation(value = "Signup", notes = "Signupを行う。")
