@@ -8,3 +8,9 @@ userNotFound:
 emailSigninFailed:
   code: "-1001"
   msg: "アカウントが存在しないもしくはメールアドレスまたはパスワードが間違っています。"
+entryPointException:
+  code: "-1002"
+  msg: "該当リソースに権限がありません。"
+accessDenied:
+  code: "-1003"
+  msg: "お持ちの権限では接続できないリソースです。"

@@ -32,8 +32,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests() // 次のリクエストに対して使用権限をチェック
                         .antMatchers("/*/signin", "/*/signup").permitAll() // ←は誰でも接続可能
-                        .antMatchers(HttpMethod.GET, "helloworld/**").permitAll() // hellowworldで始まるGETリクエストのリソースは誰でも接続可能
-                        .anyRequest().hasRole("USER") // その他のリクエストに対しては認証されているメンバーのみ接続可
+                        .antMatchers(HttpMethod.GET,  "/exception/**", "helloworld/**").permitAll() // hellowworldで始まるGETリクエストのリソースは誰でも接続可能
+                    .antMatchers("/*/users").hasRole("ADMIN")
+                    .anyRequest().hasRole("USER") // その他のリクエストに対しては認証されているメンバーのみ接続可
+                .and()
+                    .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())
+                .and()
+                    .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint())
                 .and()
                     .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class); // jwt token filterをid/password認証filter前に入れる。
 
