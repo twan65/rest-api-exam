@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt tokenで認証を行うためセッションは必要ない→生成しない。
                 .and()
                     .authorizeRequests() // 次のリクエストに対して使用権限をチェック
-                        .antMatchers("/*/signin", "/*/signup").permitAll() // ←は誰でも接続可能
+                        .antMatchers("/*/signin", "/*/signin/**", "/*/signup", "/social/**").permitAll() // ←は誰でも接続可能
                         .antMatchers(HttpMethod.GET,  "/exception/**", "helloworld/**").permitAll() // hellowworldで始まるGETリクエストのリソースは誰でも接続可能
                     .antMatchers("/*/users").hasRole("ADMIN")
                     .anyRequest().hasRole("USER") // その他のリクエストに対しては認証されているメンバーのみ接続可

@@ -14,3 +14,6 @@ entryPointException:
 accessDenied:
   code: "-1003"
   msg: "お持ちの権限では接続できないリソースです。"
+communicationError:
+  code: "-1004"
+  msg: "通信中にエラーが発生しました。"

@@ -23,20 +23,22 @@ import java.util.stream.Collectors;
 @Table(name = "user") // ‘user’テーブルにマッピングされることを指す
 public class User implements UserDetails {
 
-    @Id // primaryKey
+    @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long msrl;
 
-    // uid columnを指す。必須でユニーク項目、長さは30
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, unique = true, length = 50)
     private String uid;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     private String password;
 
     @Column(nullable = false, length = 100)
     private String name;
+
+    @Column(length = 100)
+    private String provider;
 
     /*
     基本権限がセットされる。

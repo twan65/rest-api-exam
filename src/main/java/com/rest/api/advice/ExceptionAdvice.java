@@ -1,6 +1,7 @@
 package com.rest.api.advice;
 
 import com.rest.api.advice.exception.CAuthenticationEntryPointException;
+import com.rest.api.advice.exception.CCommunicationException;
 import com.rest.api.advice.exception.CEmailSigninFailedException;
 import com.rest.api.advice.exception.CUserNotFoundException;
 import com.rest.api.model.response.CommonResult;
@@ -51,6 +52,12 @@ public class ExceptionAdvice {
     @ExceptionHandler(AccessDeniedException.class)
     public CommonResult accessDeniedException(HttpServletRequest request, AccessDeniedException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("accessDenied.code")), getMessage("accessDenied.msg"));
+    }
+
+    @ExceptionHandler(CCommunicationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult communicationException(HttpServletRequest request, CCommunicationException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("communicationError.code")), getMessage("communicationError.msg"));
     }
 
     // code情報に該当メッセージを照会する。
