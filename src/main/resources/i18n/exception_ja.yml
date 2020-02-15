@@ -17,3 +17,6 @@ accessDenied:
 communicationError:
   code: "-1004"
   msg: "通信中にエラーが発生しました。"
+existingUser:
+  code: "-1005"
+  msg: "既に登録されています。ログインしてください。"

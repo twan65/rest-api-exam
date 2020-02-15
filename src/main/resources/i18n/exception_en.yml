@@ -17,3 +17,6 @@ accessDenied:
 communicationError:
   code: "-1004"
   msg: "An error occurred during communication."
+existingUser:
+  code: "-1005"
+  msg: "You are an existing member."

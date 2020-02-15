@@ -1,9 +1,6 @@
 package com.rest.api.advice;
 
-import com.rest.api.advice.exception.CAuthenticationEntryPointException;
-import com.rest.api.advice.exception.CCommunicationException;
-import com.rest.api.advice.exception.CEmailSigninFailedException;
-import com.rest.api.advice.exception.CUserNotFoundException;
+import com.rest.api.advice.exception.*;
 import com.rest.api.model.response.CommonResult;
 import com.rest.api.service.ResponseService;
 import lombok.RequiredArgsConstructor;
@@ -67,5 +64,11 @@ public class ExceptionAdvice {
     // code情報, 追加argumentで現在localeに当たるメッセージを照会する。
     private String getMessage(String code, Object[] args) {
         return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
+    }
+
+    @ExceptionHandler(CUserExistException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult communicationException(HttpServletRequest request, CUserExistException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("existingUser.code")), getMessage("existingUser.msg"));
     }
 }
