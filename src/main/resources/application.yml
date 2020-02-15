@@ -17,7 +17,7 @@ spring:
     secret: govlepel@$&
   social:
     kakao:
-      client_id: 3ef0d529b6d92078b924cc0dd6ba2569 # アプリ生成時のREST API Key
+      client_id: XXXXXXXXXXXXXXXXXXXXXXXXX # アプリ生成時のREST API Key
       redirect: /social/login/kakao
       url:
         login: https://kauth.kakao.com/oauth/authorize
